@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf2ed3dh72au0"]
+[gd_scene load_steps=10 format=3 uid="uid://cf2ed3dh72au0"]
 
 [ext_resource type="PackedScene" uid="uid://cslk48hqstbit" path="res://scenes/player.tscn" id="1_7kcmh"]
 [ext_resource type="Texture2D" uid="uid://dlpr8gfhrg4gf" path="res://assets/sprites/world_tileset.png" id="2_0umrc"]
 [ext_resource type="PackedScene" uid="uid://dfvxlje87udqo" path="res://scenes/platform.tscn" id="3_jxcha"]
+[ext_resource type="PackedScene" uid="uid://brhke1d6jmpmt" path="res://scenes/coin.tscn" id="4_8p4gi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ybkw4"]
 texture = ExtResource("2_0umrc")
@@ -401,6 +402,21 @@ texture = ExtResource("2_0umrc")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ybkw4")
 
+[sub_resource type="Animation" id="Animation_8dci2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(421, 22)]
+}
+
 [sub_resource type="Animation" id="Animation_6lncq"]
 resource_name = "move horizontal"
 length = 1.5
@@ -416,21 +432,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(421, 22), Vector2(540, 22)]
-}
-
-[sub_resource type="Animation" id="Animation_8dci2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(421, 22)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4w0qj"]
@@ -452,9 +453,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2(0, 2)
 tile_set = SubResource("TileSet_36dws")
 format = 2
-layer_0/tile_data = PackedInt32Array(65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 131070, 0, 1, 131071, 0, 1, 65537, 0, 1, 196606, 0, 1, 131072, 0, 1, 65536, 65536, 1, 196607, 65536, 1, 131073, 65536, 1, 2, 589824, 0, 3, 655360, 0, 4, 720896, 0, 5, 262144, 0, -65530, 262144, 0, -131065, 262144, 0, 65541, 262144, 1, 131077, 262144, 1, 65542, 262144, 1, -65529, 262144, 1, 131079, 262144, 1, 131078, 327680, 1, 6, 327680, 1, 7, 327680, 1, 65543, 327680, 1, -131064, 262144, 0, -131063, 262144, 0, -131062, 131072, 0, -196598, 327680, 5, -131061, 393216, 0, -65524, 393216, 0, -65523, 393216, 0, 14, 393216, 0, 15, 393216, 0, 16, 393216, 0, -65525, 393216, 1, 11, 393216, 1, 12, 524288, 1, 13, 524288, 1, 65550, 524288, 1, 65551, 524288, 1, 65552, 524288, 1, 65547, 393216, 1, 65548, 393216, 1, 65549, 393216, 1, 131083, 393216, 1, 131084, 393216, 1, 131085, 393216, 1, 131086, 393216, 1, 131087, 393216, 1, 131088, 393216, 1, -262134, 327680, 3, -196607, 131072, 0, -262142, 131072, 0, -262141, 131072, 0, -262140, 131072, 0, -327675, 131072, 0, -65535, 393216, 6, -196608, 131072, 0, -393210, 196608, 8, -458746, 131072, 4, -327673, 131072, 0, -393208, 131072, 0, -393207, 131072, 0, -393206, 589824, 0, -393205, 655360, 0, -393204, 720896, 0, -393203, 0, 0, -393202, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -393200, 65536, 3, -393199, 0, 5, -458735, 0, 4, -524271, 0, 3, -327674, 131072, 0, 20, 0, 0, 21, 0, 0, 65559, 0, 0, 65560, 0, 0, 24, 393216, 5, -65512, 393216, 3, -65515, 262144, 8, 65571, 262144, 0, 65572, 262144, 0, 65573, 262144, 0, 65574, 262144, 0, 65575, 262144, 0, 65576, 262144, 0, 65577, 262144, 0, 131107, 262144, 1, 131108, 327680, 1, 131109, 327680, 1, 131110, 262144, 1, 131111, 262144, 1, 131112, 327680, 1, 131113, 262144, 1)
+layer_0/tile_data = PackedInt32Array(65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 131070, 0, 1, 131071, 0, 1, 65537, 0, 1, 196606, 0, 1, 131072, 0, 1, 65536, 65536, 1, 196607, 65536, 1, 131073, 65536, 1, 2, 589824, 0, 3, 655360, 0, 4, 720896, 0, 5, 262144, 0, -65530, 262144, 0, -131065, 262144, 0, 65541, 262144, 1, 131077, 262144, 1, 65542, 327680, 2, -65529, 327680, 2, 131079, 262144, 1, 131078, 327680, 1, 6, 327680, 1, 7, 327680, 1, 65543, 327680, 1, -131064, 262144, 0, -131063, 262144, 0, -131062, 131072, 0, -196598, 327680, 5, -131061, 393216, 0, -65524, 393216, 0, -65523, 393216, 0, 14, 393216, 0, 15, 393216, 0, 16, 393216, 0, -65525, 458752, 2, 11, 458752, 2, 12, 524288, 1, 13, 524288, 1, 65550, 524288, 1, 65551, 524288, 1, 65552, 524288, 1, 65547, 393216, 1, 65548, 393216, 1, 65549, 393216, 1, 131083, 393216, 1, 131084, 393216, 1, 131085, 458752, 2, 131086, 393216, 1, 131087, 458752, 2, 131088, 393216, 1, -262134, 327680, 3, -196607, 131072, 0, -262142, 131072, 0, -262141, 131072, 0, -262140, 131072, 0, -327675, 131072, 0, -65535, 393216, 6, -196608, 131072, 0, -393210, 196608, 8, -458746, 131072, 4, -327673, 131072, 0, -393208, 131072, 0, -393207, 131072, 0, -393206, 589824, 0, -393205, 655360, 0, -393204, 720896, 0, -393203, 0, 0, -393202, 0, 0, -327665, 0, 0, -327664, 0, 0, -327663, 0, 0, -393200, 65536, 3, -393199, 0, 5, -458735, 0, 4, -524271, 0, 3, -327674, 131072, 0, 20, 0, 0, 21, 0, 0, 65559, 0, 0, 65560, 0, 0, 24, 393216, 5, -65512, 393216, 3, -65515, 262144, 8, 65571, 262144, 0, 65572, 262144, 0, 65573, 262144, 0, 65574, 262144, 0, 65575, 262144, 0, 65576, 262144, 0, 65577, 262144, 0, 131107, 262144, 1, 131108, 327680, 1, 131109, 327680, 1, 131110, 262144, 1, 131111, 262144, 1, 131112, 327680, 1, 131113, 262144, 1, -3, 0, 1, -65539, 0, 1, -131075, 65536, 0, -196611, 65536, 0, -262147, 0, 1, -327683, 0, 1, -393219, 0, 1, -458755, 0, 1, -524291, 0, 1, -589827, 65536, 0, -655363, 0, 1, -720899, 0, 1, 131069, 0, 0, 196605, 0, 2, 65533, 0, 2, -458739, 458752, 5)
 
 [node name="platform" parent="." instance=ExtResource("3_jxcha")]
 position = Vector2(421, 22)
@@ -464,3 +466,24 @@ libraries = {
 "": SubResource("AnimationLibrary_4w0qj")
 }
 autoplay = "move horizontal"
+
+[node name="coin" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(142, -107)
+
+[node name="coin2" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(103, -27)
+
+[node name="coin3" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(263, -11)
+
+[node name="coin4" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(417, 8)
+
+[node name="coin5" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(599, 8)
+
+[node name="coin6" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(616, 8)
+
+[node name="coin7" parent="." instance=ExtResource("4_8p4gi")]
+position = Vector2(632, 8)
