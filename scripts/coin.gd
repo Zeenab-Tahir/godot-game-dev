@@ -1,7 +1,9 @@
 extends Area2D
 
+@onready var game_manager = %game_manager
+
 func _on_body_entered(body):
-	print("+1 score") # Replace with function body.
+	game_manager.add_point()
 	queue_free()
 	
 
